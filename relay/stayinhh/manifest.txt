@@ -1,3 +1,0 @@
-golf/index.html
-manifest.txt
-restaurants/index.html
