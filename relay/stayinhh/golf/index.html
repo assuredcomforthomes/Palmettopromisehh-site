@@ -145,14 +145,25 @@ if('scrollRestoration' in history){history.scrollRestoration='manual';}
 window.addEventListener('load',function(){ if(!location.hash){ window.scrollTo(0,0); } });
 (function(){
   var form=document.getElementById('hhi-form');
+  var btn=form.querySelector('button[type=submit]');
+  var THANKS='/golf-thank-you';
   form.addEventListener('submit',function(e){
+    e.preventDefault();
     var ok=true;
     form.querySelectorAll('input[required]').forEach(function(i){
       var bad=!i.value.trim()||(i.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(i.value));
       i.style.borderColor=bad?'#c15f3c':'';
       if(bad) ok=false;
     });
-    if(!ok){e.preventDefault();}
+    if(!ok) return;
+    btn.disabled=true; btn.textContent='Sending\u2026';
+    var done=false;
+    function go(){ if(done) return; done=true; window.location.href=THANKS; }
+    try{
+      fetch(form.action,{method:'POST',body:new FormData(form),mode:'no-cors',credentials:'omit',keepalive:true})
+        .then(go,go);
+      setTimeout(go,4000);
+    }catch(err){ go(); }
   });
 })();
 </script>

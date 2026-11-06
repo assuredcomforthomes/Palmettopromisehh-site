@@ -1,4 +1,3 @@
-assets/img/golf-cover-thumb.jpg
-golf-thank-you/index.html
 golf/index.html
 manifest.txt
+restaurants/index.html
