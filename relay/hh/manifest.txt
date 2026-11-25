@@ -1,0 +1,2 @@
+relay/hh/restaurants.html site/restaurants/index.html
+relay/hh/golf.html site/golf/index.html
